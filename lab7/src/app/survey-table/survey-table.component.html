@@ -1,0 +1,18 @@
+<table class="survey-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Feedback</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let survey of surveys">
+        <td>{{survey.name}}</td>
+        <td>{{survey.email}}</td>
+        <td>{{survey.age}}</td>
+        <td>{{survey.feedback}}</td>
+      </tr>
+    </tbody>
+  </table>

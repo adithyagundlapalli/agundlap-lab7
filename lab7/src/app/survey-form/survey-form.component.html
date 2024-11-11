@@ -1,0 +1,47 @@
+<form [formGroup]="surveyForm" (ngSubmit)="onSubmit()" class="survey-form">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input id="name" type="text" formControlName="name" />
+    <div
+      class="error"
+      *ngIf="surveyForm.get('name')?.touched && surveyForm.get('name')?.errors?.['required']"
+    >
+      Name is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input id="email" type="email" formControlName="email" />
+    <div
+      class="error"
+      *ngIf="surveyForm.get('email')?.touched && surveyForm.get('email')?.errors?.['email']"
+    >
+      Please enter a valid email
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="age">Age:</label>
+    <input id="age" type="number" formControlName="age" />
+    <div
+      class="error"
+      *ngIf="surveyForm.get('age')?.touched && surveyForm.get('age')?.errors?.['required']"
+    >
+      Age is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="feedback">Feedback:</label>
+    <textarea id="feedback" formControlName="feedback"></textarea>
+    <div
+      class="error"
+      *ngIf="surveyForm.get('feedback')?.touched && surveyForm.get('feedback')?.errors?.['required']"
+    >
+      Feedback is required
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!surveyForm.valid">Submit</button>
+</form>
