@@ -1,47 +1,44 @@
 <form [formGroup]="surveyForm" (ngSubmit)="onSubmit()" class="survey-form">
   <div class="form-group">
     <label for="name">Name:</label>
-    <input id="name" type="text" formControlName="name" />
-    <div
-      class="error"
-      *ngIf="surveyForm.get('name')?.touched && surveyForm.get('name')?.errors?.['required']"
-    >
-      Name is required
+    <input id="name" type="text" formControlName="name">
+    <div class="error" *ngIf="surveyForm.get('name')?.touched && surveyForm.get('name')?.errors">
+      <span *ngIf="surveyForm.get('name')?.errors?.['required']">Name is required</span>
+      <span *ngIf="surveyForm.get('name')?.errors?.['minlength']">Name must be at least 2 characters</span>
     </div>
   </div>
 
   <div class="form-group">
     <label for="email">Email:</label>
-    <input id="email" type="email" formControlName="email" />
-    <div
-      class="error"
-      *ngIf="surveyForm.get('email')?.touched && surveyForm.get('email')?.errors?.['email']"
-    >
-      Please enter a valid email
+    <input id="email" type="email" formControlName="email">
+    <div class="error" *ngIf="surveyForm.get('email')?.touched && surveyForm.get('email')?.errors">
+      <span *ngIf="surveyForm.get('email')?.errors?.['required']">Email is required</span>
+      <span *ngIf="surveyForm.get('email')?.errors?.['email']">Please enter a valid email</span>
     </div>
   </div>
 
   <div class="form-group">
     <label for="age">Age:</label>
-    <input id="age" type="number" formControlName="age" />
-    <div
-      class="error"
-      *ngIf="surveyForm.get('age')?.touched && surveyForm.get('age')?.errors?.['required']"
-    >
-      Age is required
+    <input id="age" type="number" formControlName="age">
+    <div class="error" *ngIf="surveyForm.get('age')?.touched && surveyForm.get('age')?.errors">
+      <span *ngIf="surveyForm.get('age')?.errors?.['required']">Age is required</span>
+      <span *ngIf="surveyForm.get('age')?.errors?.['min'] || surveyForm.get('age')?.errors?.['max']">Age must be between 1 and 120</span>
     </div>
   </div>
 
   <div class="form-group">
     <label for="feedback">Feedback:</label>
     <textarea id="feedback" formControlName="feedback"></textarea>
-    <div
-      class="error"
-      *ngIf="surveyForm.get('feedback')?.touched && surveyForm.get('feedback')?.errors?.['required']"
-    >
-      Feedback is required
+    <div class="error" *ngIf="surveyForm.get('feedback')?.touched && surveyForm.get('feedback')?.errors">
+      <span *ngIf="surveyForm.get('feedback')?.errors?.['required']">Feedback is required</span>
+      <span *ngIf="surveyForm.get('feedback')?.errors?.['minlength']">Feedback must be at least 10 characters</span>
     </div>
   </div>
 
   <button type="submit" [disabled]="!surveyForm.valid">Submit</button>
+  
+  <!-- Debug info (optional) -->
+  <div style="margin-top: 20px; color: #666;">
+    <small>Form Status: {{ surveyForm.status }}</small>
+  </div>
 </form>

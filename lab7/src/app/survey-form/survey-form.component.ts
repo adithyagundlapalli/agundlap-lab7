@@ -24,9 +24,16 @@ export class SurveyFormComponent {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
+    console.log('Form submitted', this.surveyForm.value, this.surveyForm.valid); // Debug log
     if (this.surveyForm.valid) {
-      this.surveySubmitted.emit(this.surveyForm.value);
+      const surveyData: Survey = {
+        name: this.surveyForm.get('name')?.value,
+        email: this.surveyForm.get('email')?.value,
+        age: Number(this.surveyForm.get('age')?.value),
+        feedback: this.surveyForm.get('feedback')?.value
+      };
+      this.surveySubmitted.emit(surveyData);
       this.surveyForm.reset();
     }
   }
